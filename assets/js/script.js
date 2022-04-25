@@ -14,6 +14,14 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
     }
+/**
+ * let to use enter to submit your answer
+ */
+    document.getElementById("answer-box").addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+            checkAnswer();
+        }
+    })
 
     runGame("addition");
 
@@ -24,6 +32,12 @@ document.addEventListener("DOMContentLoaded", function() {
  * and after the user's answer has been processed
  */
 function runGame(gameType) {
+
+ // clearing answer box from last answer
+
+    document.getElementById("answer-box").value = "";
+// place coursor in answer box automaticly
+    document.getElementById("answer-box").focus();
 
     // Creates two random numbers between 1 and 25
     let num1 = Math.floor(Math.random() * 25) + 1;
@@ -85,7 +99,7 @@ function calculateCorrectAnswer() {
     } else if (operator === "x") {
         return [operand1 * operand2, "multiply"];
     } else if (operator === "/") {
-        return [operand1 / operand2, "divide"];
+        return [operand1 / operand2, "division"];
     }else {
         alert(`Unimplemented operator ${operator}`);
         throw `Unimplemented operator ${operator}. Aborting!`;
@@ -140,7 +154,7 @@ function displayMultiplyQuestion(operand1, operand2) {
 
 function displayDivideQuestion(operand1, operand2) {
 
-    document.getElementById('operand1').textContent = operand1;
+    document.getElementById('operand1').textContent = operand2 * (Math.floor(Math.random() * 10) + 1); 
     document.getElementById('operand2').textContent = operand2;
     document.getElementById('operator').textContent = "/";
     
